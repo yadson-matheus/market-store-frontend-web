@@ -16,21 +16,6 @@ body, input, button {
     font-size: 14px;
 }
 
-label {
-    font-size: 14px;
-    color: #444;
-    margin-bottom: 8px;
-}
-
-input {
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 2px;
-    height: 45px;
-    padding: 0 15px;
-    font-size: 16px;
-}
-
 button.btn {
     border: 0;
     border-radius: 2px;
@@ -42,19 +27,19 @@ button.btn {
 }
 
 button.btn-primary-outline {
-    background-color: white;
-    color: rgba(161,34,207,1);
+    background-color: #fff;
+    color: #1abc9b;
     border: solid 1px;
     font-weight: bold;
 }
 
 button.btn-primary-outline:hover {
-    background-color: rgba(161,34,207,1);
+    background-color: #1abc9b;
     color: #fff;
 }
 
 #login {
-    background-color: rgba(161,34,207,1);
+    background-color: #1abc9b;
     position: absolute;
     min-height: 100%;
     left: 0;
@@ -68,9 +53,17 @@ button.btn-primary-outline:hover {
     width: 100%;
     display: flex;
     flex-direction: column;
-    box-shadow: 1px 1px 40px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 60px 0 rgba(0, 0, 0, 0.4);
     border: solid 1px rgba(0, 0, 0, 0.3);
     padding: 3rem;
     background-color: #fff;
     border-radius: 7px;
+}
+
+#login form button {
+    margin-bottom: 15px;
+}
+
+.primary-color {
+    color: #1abc9b;
 }

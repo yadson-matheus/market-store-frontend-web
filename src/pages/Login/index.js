@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import 'materialize-css';
+
 import api from '../../services/api';
 
 export default function Login({ history }) {
@@ -20,25 +23,32 @@ export default function Login({ history }) {
     return (
         <div id="login">
             <form onSubmit={ handleSubmit }>
-                <label htmlFor="email">E-MAIL *</label>
-                <input 
-                    id="email" 
-                    type="email" 
-                    placeholder="Digite seu e-mail" 
-                    value={ email }
-                    onChange={ event => setEmail(event.target.value) }
-                />
+                <h5 className="center-align">Sign-in</h5>
 
-                <label htmlFor="password">PASSWORD *</label>
-                <input 
-                    id="password" 
-                    type="password" 
-                    placeholder="Digite sua senha" 
-                    value={ password }
-                    onChange={ event => setPassword(event.target.value) }
-                />
+                <div className="input-field">
+                    <input 
+                        id="email" 
+                        type="email"  
+                        value={ email }
+                        onChange={ event => setEmail(event.target.value) }
+                    />
+                    <label htmlFor="email">E-mail</label>
+                </div>
 
-                <button type="submit" className="btn btn-primary-outline">ENTER</button>
+                <div className="input-field">
+                    <input 
+                        id="password" 
+                        type="password"  
+                        value={ password }
+                        onChange={ event => setPassword(event.target.value) }
+                    />
+                    <label htmlFor="password">Password</label>
+                </div>
+                
+                <div className="center-align">
+                    <button type="submit" className="btn btn-primary-outline z-depth-0">ENTER</button>
+                    <Link className="primary-color" to="/new">Forgot password?</Link>
+                </div>
             </form>
         </div>
     );
