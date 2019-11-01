@@ -4,6 +4,10 @@ import 'materialize-css';
 
 import api from '../../services/api';
 
+import { ToastDanger } from '../../modules/Toast';
+
+import './styles.css';
+
 export default function Login({ history }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -11,18 +15,26 @@ export default function Login({ history }) {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const response = await api.post('/authenticate', { email, password });
-        
-        const { _id } = response.data;
+        await api.post('/authenticate', { email, password })
+            .then(function(res) {
+                const { token } = res.data;
+                const { email } = res.data.user;
 
-        localStorage.setItem('user', _id);
+                localStorage.setItem('token', token);
+                localStorage.setItem('email', email);
 
-        history.push('/dashboard');
+                history.push('/dashboard');
+            })
+            .catch(function(err) {
+                const { error } = err.response.data;
+
+                ToastDanger(error);
+            });
     }
 
     return (
         <div id="login">
-            <form onSubmit={ handleSubmit }>
+            <form onSubmit={ handleSubmit } className="shadow-lg">
                 <h5 className="center-align">Sign-in</h5>
 
                 <div className="input-field">
@@ -46,8 +58,8 @@ export default function Login({ history }) {
                 </div>
                 
                 <div className="center-align">
-                    <button type="submit" className="btn btn-primary-outline z-depth-0">ENTER</button>
-                    <Link className="primary-color" to="/new">Forgot password?</Link>
+                    <button type="submit" className="btn btn-primary-outline btn-block mb-2">ENTER</button>
+                    <Link className="text-primary" to="/routename">Forgot password?</Link>
                 </div>
             </form>
         </div>
